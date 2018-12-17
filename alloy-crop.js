@@ -7,7 +7,7 @@
         ? require('alloyfinger')
         : window.AlloyFinger
     var Transform = typeof require === 'function'
-        ? require('css3transform')
+        ? require('css3transform').default
         : window.Transform
 
     var AlloyCrop = function (option) {
@@ -38,6 +38,8 @@
         }
         this.cancel = option.cancel;
         this.ok = option.ok;
+		
+		
 
         this.ok_text = option.ok_text || "ok";
         this.cancel_text = option.cancel_text || "cancel";
@@ -160,7 +162,7 @@
         _cancel: function () {
             var self = this;
             setTimeout(function () {
-                self._css(self.croppingBox, {
+                self.croppingBox && self._css(self.croppingBox, {
                     display: "none"
                 });
             }, 300);
@@ -170,7 +172,7 @@
             this.crop();
             var self = this;
             setTimeout(function () {
-                self._css(self.croppingBox, {
+                self.croppingBox && self._css(self.croppingBox, {
                     display: "none"
                 });
             }, 300);
